@@ -1,10 +1,13 @@
 package com.shorrockin.cascal.serialization
 
-import com.shorrockin.cascal.utils.{UUID => UUIDUtils}
+import com.shorrockin.cascal.utils.{UUID => UUIDUtils, ThreadLocal}
 import java.util.UUID
 import java.util.Date
 import java.nio.charset.Charset
+import java.nio.charset.CharsetDecoder
+import java.nio.charset.CharsetEncoder
 import java.nio.{ByteBuffer,CharBuffer}
+import scala.util.DynamicVariable
 
 object Serializer {
 
@@ -45,11 +48,15 @@ trait Serializer[A] {
 
 object StringSerializer extends Serializer[String] {
   val utf8 = Charset.forName("UTF-8")
-  val decoder = utf8.newDecoder
-  val encoder = utf8.newEncoder
+  private val decoder = new ThreadLocal(utf8.newDecoder)
+  private val encoder = new ThreadLocal(utf8.newEncoder)
 
-  def toByteBuffer(str:String) = encoder.encode(CharBuffer.wrap(str.toCharArray))
-  def fromByteBuffer(bytes:ByteBuffer) = decoder.decode(bytes).toString
+  def toByteBuffer(str:String) = encoder.withValue {
+    _.encode(CharBuffer.wrap(str.toCharArray))
+  }
+  def fromByteBuffer(bytes:ByteBuffer) = decoder.withValue {
+    _.decode(bytes).toString
+  }
   def toString(str:String) = str
   def fromString(str:String) = str
 }
