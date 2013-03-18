@@ -27,7 +27,7 @@ case class SuperColumn(val value:ByteBuffer, val key:SuperKey) extends Gettable[
   def ::(other:SuperColumn):List[SuperColumn] = other :: this :: Nil
 
   private def convertList[T](v:java.util.List[T]):List[T] = {
-	 scala.collection.JavaConversions.asBuffer(v).toList
+	 scala.collection.JavaConversions.asScalaBuffer(v).toList
   }
 
   /**
@@ -54,7 +54,7 @@ case class SuperColumn(val value:ByteBuffer, val key:SuperKey) extends Gettable[
   private def stringIfPossible(a:ByteBuffer):String = {
     if (a.array.length <= 4) return "Array (" + a.array.mkString(", ") + ")"
     if (a.array.length > 1000) return a.array.toString
-    try { Conversions.string(a) } catch { case _ => a.array.toString }
+    try { Conversions.string(a) } catch { case _:Throwable => a.array.toString }
   }
 
   override def toString():String = "%s \\ SuperColumn(value = %s)".format(

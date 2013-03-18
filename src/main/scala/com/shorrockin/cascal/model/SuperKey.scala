@@ -22,7 +22,7 @@ case class SuperKey(val value:String, val family:SuperColumnFamily) extends Key[
   }
 
   private def convertList[T](v:java.util.List[T]):List[T] = {
-	 scala.collection.JavaConversions.asBuffer(v).toList
+	 scala.collection.JavaConversions.asScalaBuffer(v).toList
   }
 
   override def toString = "%s \\ SuperKey(value = %s)".format(family.toString, value)

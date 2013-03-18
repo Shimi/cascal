@@ -490,18 +490,18 @@ class Session(val host:Host, val defaultConsistency:Consistency, val noFramedTra
   }
 
   private def Buffer[T](v:java.util.List[T]) = {
-    scala.collection.JavaConversions.asBuffer(v)
+    scala.collection.JavaConversions.asScalaBuffer(v)
   }
 
   implicit private def convertList[T](v:java.util.List[T]):List[T] = {
-    scala.collection.JavaConversions.asBuffer(v).toList
+    scala.collection.JavaConversions.asScalaBuffer(v).toList
   }
 
   implicit private def convertMap[K,V](v:java.util.Map[K,V]): scala.collection.mutable.Map[K,V] = {
-    scala.collection.JavaConversions.asMap(v)
+    scala.collection.JavaConversions.mapAsScalaMap(v)
   }
 
   implicit private def convertSet[T](s:java.util.Set[T]):scala.collection.mutable.Set[T] = {
-    scala.collection.JavaConversions.asSet(s)
+    scala.collection.JavaConversions.asScalaSet(s)
   }
 }
