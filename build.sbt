@@ -9,8 +9,8 @@ scalaVersion := "2.10.1"
 compileOrder := CompileOrder.JavaThenScala
 
 libraryDependencies ++= Seq(
-    "org.apache.cassandra" % "cassandra-all" %  "1.1.0",
-    "org.apache.cassandra" % "cassandra-thrift" % "1.1.0",
+    "org.apache.cassandra" % "cassandra-all" %  "1.1.10",
+    "org.apache.cassandra" % "cassandra-thrift" % "1.1.10",
 	"com.eaio.uuid" % "uuid" % "3.2",
 	"org.slf4j" % "slf4j-api" % "1.6.4",
 	"commons-pool" % "commons-pool" % "1.6",
@@ -24,3 +24,5 @@ publishTo <<= (version) { version: String =>
         if  (version.trim.endsWith("SNAPSHOT"))  "snapshots"
         else                                     "releases/" }    ))
 }
+
+scalacOptions ++= Seq("-feature", "-Xlog-implicits")

@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.serialization
 
+import scala.language.existentials
 import java.nio.ByteBuffer
 import reflect.Manifest
 import java.lang.annotation.Annotation

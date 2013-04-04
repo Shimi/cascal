@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.utils
 
+import scala.language.reflectiveCalls
 import _root_.scala.io.Source
 import java.io.{FileWriter, InputStream, FileOutputStream, File}
 import java.util.concurrent.TimeUnit

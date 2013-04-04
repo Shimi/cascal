@@ -1,5 +1,6 @@
 package com.shorrockin.cascal
 
+import scala.language.implicitConversions
 import org.junit.{Assert, Test}
 import com.shorrockin.cascal.utils.Conversions._
 import com.shorrockin.cascal.serialization.TupleSerializer

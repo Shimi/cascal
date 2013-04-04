@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.session
 
+import scala.language.existentials
 import org.apache.cassandra.thrift.{Deletion, Mutation}
 import com.shorrockin.cascal.model._
 import com.shorrockin.cascal.utils.Utils.now

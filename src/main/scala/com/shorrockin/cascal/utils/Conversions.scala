@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.utils
 
+import scala.language.implicitConversions
 import java.nio.charset.Charset
 import com.shorrockin.cascal.model.{Column, Keyspace}
 import java.util.{Date, UUID => JavaUUID}
@@ -12,7 +13,7 @@ import java.nio.ByteBuffer
 object Conversions {
   val utf8 = Charset.forName("UTF-8")
 
-  implicit def keyspace(str:String) = new Keyspace(str)
+  implicit def stringToKeyspace(str:String) = new Keyspace(str)
 
   implicit def byteBuffer(date:Date):ByteBuffer = DateSerializer.toByteBuffer(date)
   implicit def date(bytes:ByteBuffer):Date = DateSerializer.fromByteBuffer(bytes)

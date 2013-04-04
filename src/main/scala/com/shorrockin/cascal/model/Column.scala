@@ -82,7 +82,7 @@ case class Column[Owner](val name:ByteBuffer,
 
   private def stringIfPossible(a:ByteBuffer):String = {
     if (a == null) return "NULL"
-    if (a.array.length <= 4) return "Array (" + a.array.mkString(", ") + ")"
+    if (a.array.length <= 4) return "Array (" + byteArrayOps(a.array).mkString(", ") + ")"
     if (a.array.length > 1000) return a.array.toString
     try { Conversions.string(a) } catch { case _:Throwable => a.array.toString }
   }

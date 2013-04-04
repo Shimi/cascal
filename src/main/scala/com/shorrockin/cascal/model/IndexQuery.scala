@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.model
 
+import scala.language.implicitConversions
 import org.apache.cassandra.thrift.IndexClause
 import java.nio.ByteBuffer
 import org.apache.cassandra.thrift.{IndexExpression => CassIndexExpression}

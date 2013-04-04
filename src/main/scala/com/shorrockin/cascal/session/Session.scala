@@ -1,5 +1,6 @@
 package com.shorrockin.cascal.session
 
+import scala.language.implicitConversions
 import scala.collection.mutable
 import collection.immutable.HashSet
 import java.util.concurrent.atomic.AtomicLong
